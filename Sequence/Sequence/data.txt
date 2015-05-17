@@ -1,0 +1,5 @@
+Pototsky Ilya, 3, 3
+Tanana Anna, 3, 4
+Kachkov Dmitriy, 3, 1
+Vykhota Julia, 3, 3
+Bobrik Anton, 3, 9
