@@ -1,18 +1,25 @@
+//-------------------------PlcMathSequence.h-----------------------------------
+#ifndef PLC_MATH_SEQUENCE_H
+#define PLC_MATH_SEQUENCE_H
+
 #include <iostream>
 using namespace std;
 
 template <typename T>
 class PlcMathSequence
 {
-	public:
-		PlcMathSequence(int numOfStartingValues, T* startingValues)
-		{
-			currentMember = 0;
-			num = numOfStartingValues;
-			currentValues = new T[numOfStartingValues];
-			for (int i = 0; i < numOfStartingValues; ++i)
-				currentValues[i] = startingValues[i];
-		}
+public:
+	PlcMathSequence(int numOfStartingValues, T* startingValues)
+	{
+		currentMember = 0;
+		num = numOfStartingValues;
+		currentValues = new T[numOfStartingValues];
+		for (int i = 0; i < numOfStartingValues; ++i)
+			currentValues[i] = startingValues[i];
+	}
+
+	PlcMathSequence(int numOfStartingValues, T* startingValues, bool isBegin) :
+		PlcMathSequence(numOfStartingValues, startingValues) {}
 
 	PlcMathSequence& operator ++()
 	{
@@ -57,9 +64,6 @@ class PlcMathSequence
 		return currentMember != it.currentMember;
 	}
 
-	PlcMathSequence(int numOfStartingValues, T* startingValues, bool isBegin): 
-		PlcMathSequence(numOfStartingValues, startingValues) {}
-
 	void setLast(int lastNum)
 	{
 		currentMember = lastNum;
@@ -72,3 +76,5 @@ class PlcMathSequence
 		T* currentValues;
 		int currentMember;
 };
+
+#endif

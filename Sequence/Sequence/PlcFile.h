@@ -1,3 +1,7 @@
+//----------------------------PlcFile.h----------------------------------------
+#ifndef PLC_FILE_H
+#define PLC_FILE_H
+
 #include <fstream>
 #include <sstream>
 #include "PlcString.h"
@@ -96,3 +100,5 @@ private:
 	char* text;
 	int currentNumber;
 };
+
+#endif

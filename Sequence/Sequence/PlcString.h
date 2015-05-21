@@ -1,3 +1,7 @@
+//---------------------------PlcString.h---------------------------------------
+#ifndef PLCSTRING_H
+#define PLCSTRING_H
+
 #include <iostream>
 #include "ElementTraits.h"
 using namespace std;
@@ -73,7 +77,7 @@ public:
 		for (char* p = begin; p != end; ++p)
 			temp[i++] = (*p);
 		temp[size] = '\0';
-		currentElement = ElementTraits<T> :: charToElement(temp);
+		currentElement = ElementTraits<T> ::charToElement(temp);
 		return currentElement;
 	}
 
@@ -130,3 +134,5 @@ private:
 		return false;
 	}
 };
+
+#endif

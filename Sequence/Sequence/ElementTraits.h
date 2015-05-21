@@ -1,3 +1,7 @@
+//-------------------------ElementTraits.h-------------------------------------
+#ifndef ELEMENT_TRAITS_H
+#define ELEMENT_TRAITS_H
+
 #include <iostream>
 using namespace std;
 
@@ -30,3 +34,5 @@ public:
 		return atof(text);
 	}
 };
+
+#endif // !ELEMENT_TRAITS_H

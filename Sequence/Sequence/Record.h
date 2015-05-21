@@ -1,13 +1,17 @@
+//-----------------------------Record.h----------------------------------------
+#ifndef RECORD_H
+#define RECORD_H
+
 #include <iostream>
 #include <string>
-#include "PlcText.h"
+#include "PlcString.h"
 using namespace std;
 
 struct Record
 {
     Record(char* record)
     {
-        PlcText iter(record, ", ");
+        PlcString<char*> iter(record, ", ");
         surname = *(iter++);
         name = *(iter++);
         course = atoi(*(iter++));
@@ -23,17 +27,11 @@ struct Record
           << " course, " << r.group << " group.";
        return os;
     }
-    /*bool operator < (record const& r) const
-    {
-       return (destination<r.destination);
-    }
-    bool operator == (record const& r)
-    {
-       return (flight_number==r.flight_number);
-    }*/
     
-    string surname;
+	string surname;
     string name;
     int course;
     int group;
 };
+
+#endif

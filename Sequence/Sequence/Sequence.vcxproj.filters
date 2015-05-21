@@ -32,9 +32,6 @@
     <ClInclude Include="PlcFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlcText.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Record.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -50,7 +47,7 @@
     <ClInclude Include="ElementTraits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tempRecord.h">
+    <ClInclude Include="BinaryFileRecord.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

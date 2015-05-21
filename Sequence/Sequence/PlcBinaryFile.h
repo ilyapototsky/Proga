@@ -1,3 +1,7 @@
+//-------------------------PlcBinaryFile.h-------------------------------------
+#ifndef PLC_BINARY_FILE_H
+#define PLC_BINARY_FILE_H
+
 #include <fstream>
 using namespace std;
 
@@ -87,3 +91,5 @@ private:
 	int offset;
 	int size;
 };
+
+#endif

@@ -1,3 +1,7 @@
+//--------------------------PlcFibonacci.h-------------------------------------
+#ifndef PLC_FIBONACCI_H
+#define PLC_FIBONACCI_H
+
 #include <iostream>
 #include "PlcMathSequence.h"
 using namespace std;
@@ -26,3 +30,5 @@ private:
 		currentValues[0] = temp - currentValues[1];
 	}
 };
+
+#endif
