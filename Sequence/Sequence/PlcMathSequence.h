@@ -6,11 +6,9 @@
 using namespace std;
 
 template <typename T>
-class PlcMathSequence
-{
+class PlcMathSequence {
 public:
-	PlcMathSequence(int numOfStartingValues, T* startingValues)
-	{
+	PlcMathSequence(int numOfStartingValues, T* startingValues) {
 		currentMember = 0;
 		num = numOfStartingValues;
 		currentValues = new T[numOfStartingValues];
@@ -18,63 +16,56 @@ public:
 			currentValues[i] = startingValues[i];
 	}
 
-	PlcMathSequence(int numOfStartingValues, T* startingValues, bool isBegin) :
-		PlcMathSequence(numOfStartingValues, startingValues) {}
+	PlcMathSequence(int numOfStartingValues, T* startingValues, bool isBegin):
+		PlcMathSequence(numOfStartingValues, startingValues) {
+	}
 
-	PlcMathSequence& operator ++()
-	{
+	PlcMathSequence& operator ++() {
 		getNext();
 		currentMember++;
 		return (*this);
 	}
 
-	PlcMathSequence operator ++(int)
-	{
+	PlcMathSequence operator ++(int) {
 		PlcMathSequence temp = (*this);
 		++(*this);
 		return temp;
 	}
 
-	PlcMathSequence& operator --()
-	{
+	PlcMathSequence& operator --() {
 		getPrev();
 		currentMember--;
 		return (*this);
 	}
 
-	PlcMathSequence operator --(int)
-	{
+	PlcMathSequence operator --(int) {
 		PlcMathSequence temp = (*this);
 		--(*this);
 		return temp;
 	}
 
-	T const& operator *()
-	{
+	T const& operator *() {
 		return currentValues[0];
 	}
 
-	bool operator == (PlcMathSequence const& it) const
-	{
+	bool operator == (PlcMathSequence const& it) const {
 		return currentMember == it.currentMember;
 	}
 
-	bool operator != (PlcMathSequence const& it) const
-	{
+	bool operator != (PlcMathSequence const& it) const {
 		return currentMember != it.currentMember;
 	}
 
-	void setLast(int lastNum)
-	{
+	void setLast(int lastNum) {
 		currentMember = lastNum;
 	}
 
-	protected:
-		virtual void getNext() {};
-		virtual void getPrev() {};
-		int num;
-		T* currentValues;
-		int currentMember;
+protected:
+	virtual void getNext() {};
+	virtual void getPrev() {};
+	int num;
+	T* currentValues;
+	int currentMember;
 };
 
 #endif

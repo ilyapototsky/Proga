@@ -1,5 +1,6 @@
-Pototsky Ilya, 3, 3
-Kachkov Dmitriy, 3, 1
-Vykhota Julia, 3, 3
-Tanana Anna, 3, 4
-Bobrik Anton, 3, 9
+Pototsky Ilya, 4, 3, phones:(29)333-33-33;(33)202-03-27
+Kachkov Dmitriy, 4, 1, (44)212-12-12
+Vykhota Julia, 4, 3, fax:332112345432
+Tanana Anna, 4, 4, single
+Bobrik Anton, 4, 9, -
+Sinyak Sergey, 3, 3, phone:(25)123-45-67

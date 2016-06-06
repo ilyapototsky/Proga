@@ -8,18 +8,15 @@ using namespace std;
 #pragma warning(disable: 4244)
 
 template <typename Record>
-class PlcBinaryFile
-{
+class PlcBinaryFile {
 public:
-	PlcBinaryFile(ifstream &bin) : file(bin), offset(0)
-	{
+	PlcBinaryFile(ifstream &bin): file(bin), offset(0) {
 		bin.seekg(0, ios::end);
 		size = bin.tellg();
 		bin.seekg(0);
 	}
 
-	PlcBinaryFile(ifstream& bin, bool isBegin) : file(bin), offset(0)
-	{
+	PlcBinaryFile(ifstream& bin, bool isBegin): file(bin), offset(0) {
 		bin.seekg(0, ios::end);
 		size = bin.tellg();
 		bin.seekg(0);
@@ -28,8 +25,7 @@ public:
 			offset = size;
 	}
 
-	PlcBinaryFile operator = (const PlcBinaryFile& other)
-	{
+	PlcBinaryFile operator = (const PlcBinaryFile& other) {
 		file.copyfmt(other.file);
 		file.clear(other.file.rdstate());
 		file.basic_ios<char>::rdbuf(other.file.rdbuf());
@@ -39,49 +35,30 @@ public:
 		return *this;
 	}
 
-	PlcBinaryFile& operator ++()
-	{
+	PlcBinaryFile& operator ++() {
 		offset += sizeof(Record);
 		return (*this);
 	}
 
-	PlcBinaryFile operator ++(int)
-	{
+	PlcBinaryFile operator ++(int) {
 		PlcBinaryFile plc = *this;
 		++(*this);
 		return plc;
 	}
 
-	PlcBinaryFile& operator --()
-	{
-		offset -= sizeof(Record);
-		return (*this);
-	}
-
-	PlcBinaryFile operator --(int)
-	{
-		PlcBinaryFile plc = *this;
-		--(*this);
-		return plc;
-	}
-
-	Record const& operator * ()
-	{
-		if (offset >= 0)
-		{
+	Record const& operator * () {
+		if (offset >= 0) {
 			file.seekg(offset);
 			file.read((char*)&currentRecord, sizeof(currentRecord));
 			return currentRecord;
 		}
 	}
 
-	bool operator == (PlcBinaryFile const& it) const
-	{
+	bool operator == (PlcBinaryFile const& it) const {
 		return (&file == &(it.file) && offset == it.offset);
 	}
 
-	bool operator != (PlcBinaryFile const& it) const
-	{
+	bool operator != (PlcBinaryFile const& it) const {
 		return (&file != &(it.file) || offset != it.offset);
 	}
 

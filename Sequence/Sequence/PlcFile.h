@@ -8,89 +8,59 @@
 using namespace std;
 
 template <typename Record>
-class PlcFile
-{
+class PlcFile {
 public:
-	PlcFile(ifstream &data) : plc("", "")
-	{
-		init(data, true);
-	}
-
-	PlcFile(ifstream &data, bool isBegin) : plc("", "")
-	{
+	PlcFile(ifstream &data, bool isBegin = true): plc("", "") {
 		init(data, isBegin);
 	}
-	
-	PlcFile& operator ++()
-	{
+
+	PlcFile& operator ++() {
 		++plc;
 		++currentNumber;
 		return (*this);
 	}
 
-	PlcFile operator ++(int)
-	{
+	PlcFile operator ++(int) {
 		PlcFile plcFile = *this;
 		++plc;
 		return plcFile;
 	}
 
-	PlcFile& operator --()
-	{
-		--plc;
-		--currentNumber;
-		return (*this);
-	}
-
-	PlcFile operator --(int)
-	{
-		PlcFile plcFile = *this;
-		--plc;
-		return plcFile;
-	}
-
-	Record operator * ()
-	{
+	Record operator * () {
 		return Record(*plc);
 	}
 
-	bool operator == (PlcFile const& it) const
-	{
+	bool operator == (PlcFile const& it) const {
 		return (!strcmp(text, it.text) && currentNumber == it.currentNumber);
 	}
 
-	bool operator != (PlcFile const& it) const
-	{
+	bool operator != (PlcFile const& it) const {
 		return (strcmp(text, it.text) || currentNumber != it.currentNumber);
 	}
 
-	void setSeparators(char* sep)
-	{
+	void setSeparators(char* sep) {
 		plc.setSeparators(sep);
 	}
 
 private:
-	void init(ifstream& data, bool isBegin)
-	{
+	void init(ifstream& data, bool isBegin) {
 		data.seekg(0, ios::end);
 		int size = data.tellg();
 		data.seekg(0);
-		text = new char[size];
-		for (int i = 0; i < size; ++i)
-		{
+		text = new char[size + 1];
+		for (int i = 0; i < size; ++i) {
 			data.seekg(i);
 			text[i] = (char)data.peek();
 		}
+		text[size] = '\0';
 		plc = PlcString<char*>(text, "\n");
 		setCurrentNumber(isBegin);
 	}
 
-	void setCurrentNumber(bool isBegin)
-	{
+	void setCurrentNumber(bool isBegin) {
 		currentNumber = 0;
 		if (!isBegin)
-			while (strcmp(*plc, "\0"))
-			{
+			while (strcmp(*plc, "\0")) {
 				currentNumber++;
 				plc++;
 			}

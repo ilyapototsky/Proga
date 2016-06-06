@@ -7,23 +7,18 @@
 using namespace std;
 
 template <typename T>
-class PlcString
-{
+class PlcString {
 public:
-	PlcString(char* text) : separators(" \t\n")
-	{
+	PlcString(char* text): separators(" \t\n") {
 		initData(text);
 	}
 
-	PlcString(char* text, char* sep) : separators(sep)
-	{
+	PlcString(char* text, char* sep): separators(sep) {
 		initData(text);
 	}
 
-	PlcString& operator ++()
-	{
-		if ((*end) == '\0')
-		{
+	PlcString& operator ++() {
+		if ((*end) == '\0') {
 			begin = end;
 			return (*this);
 		}
@@ -34,43 +29,13 @@ public:
 		return (*this);
 	}
 
-	PlcString operator ++(int)
-	{
+	PlcString operator ++(int) {
 		PlcString temp = (*this);
 		++(*this);
 		return temp;
 	}
-
-	PlcString& operator --()
-	{
-		if (begin == startingPoint)
-			end = begin;
-		else
-		{
-			while (isSeparator(*(--begin)))
-				if (begin == startingPoint)
-				{
-					end = begin;
-					return (*this);
-				}
-			end = begin + 1;
-			while (!isSeparator(*(--begin)))
-				if (begin == startingPoint)
-					return (*this);
-			begin++;
-		}
-		return (*this);
-	}
-
-	PlcString operator --(int)
-	{
-		PlcString temp = (*this);
-		--(*this);
-		return temp;
-	}
-
-	T const& operator *()
-	{
+	
+	T const& operator *() {
 		int size = end - begin;
 		char* temp = new char[size + 1];
 		int i = 0;
@@ -81,8 +46,7 @@ public:
 		return currentElement;
 	}
 
-	PlcString(char* text, bool isBegin) : separators(" \t\n")
-	{
+	PlcString(char* text, bool isBegin): separators(" \t\n") {
 		initData(text);
 
 		if (!isBegin)
@@ -90,19 +54,18 @@ public:
 				++(*this);
 	}
 
-	bool operator == (PlcString const& it) const
-	{
+	bool operator == (PlcString const& it) const {
 		return (begin == it.begin && end == it.end && startingPoint == it.startingPoint);
 	}
 
-	bool operator != (PlcString const& it) const
-	{
+	bool operator != (PlcString const& it) const {
 		return (begin != it.begin || end != it.end || startingPoint != it.startingPoint);
 	}
 
-	void setSeparators(char* sep)
-	{
+	void setSeparators(char* sep) {
 		separators = sep;
+		end = begin;
+		while (!isSeparator(*(++end)));
 	}
 
 private:
@@ -112,8 +75,7 @@ private:
 	char* separators;
 	char* startingPoint;
 
-	void initData(char* text)
-	{
+	void initData(char* text) {
 		startingPoint = &text[0];
 		int i = -1;
 		while (isSeparator(text[++i]));
@@ -122,11 +84,9 @@ private:
 		end = &text[i];
 	}
 
-	bool isSeparator(char ch)
-	{
+	bool isSeparator(char ch) {
 		int i = 0;
-		while (separators[i] != '\0')
-		{
+		while (separators[i] != '\0') {
 			if (ch == separators[i])
 				return true;
 			++i;

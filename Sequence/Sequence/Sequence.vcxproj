@@ -88,6 +88,7 @@
     <ClInclude Include="PlcFibonacci.h" />
     <ClInclude Include="PlcFile.h" />
     <ClInclude Include="PlcMathSequence.h" />
+    <ClInclude Include="PlcRegexString.h" />
     <ClInclude Include="PlcString.h" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="stdafx.h" />
